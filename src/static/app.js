@@ -144,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       const response = await fetch(
-        `/activities/${encodeURIComponent(activity)}/participants?email=${encodeURIComponent(email)}`,
+        `/activities/${activity}/participants?email=${email}`,
         {
           method: "DELETE",
         }
