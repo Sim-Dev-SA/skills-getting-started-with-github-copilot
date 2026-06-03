@@ -4,14 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
 
+  let messageHideTimeoutId;
+
   function showMessage(text, type) {
     messageDiv.textContent = text;
     messageDiv.className = type;
     messageDiv.classList.remove("hidden");
 
-    setTimeout(() => {
+    if (messageHideTimeoutId) {
+      clearTimeout(messageHideTimeoutId);
+    }
+
+    messageHideTimeoutId = setTimeout(() => {
       messageDiv.classList.add("hidden");
+      messageHideTimeoutId = undefined;
     }, 5000);
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 
   // Function to fetch activities from API
