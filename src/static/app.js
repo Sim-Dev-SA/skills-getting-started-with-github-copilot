@@ -57,13 +57,13 @@ document.addEventListener("DOMContentLoaded", () => {
                   .map(
                     (participant) => `
                       <li class="participant-item">
-                        <span class="participant-email">${participant}</span>
+                        <span class="participant-email">${escapeHtml(participant)}</span>
                         <button
                           type="button"
                           class="participant-delete"
-                          data-activity="${name}"
-                          data-email="${participant}"
-                          aria-label="Remove ${participant} from ${name}"
+                          data-activity="${encodeURIComponent(name)}"
+                          data-email="${encodeURIComponent(participant)}"
+                          aria-label="Remove ${escapeHtml(participant)} from ${escapeHtml(name)}"
                         >
                           <span aria-hidden="true">×</span>
                         </button>
